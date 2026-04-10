@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunblock - Go outside to unlock your apps</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Dynamic Sky Background -->
+    <div class="sky-background" id="skyBackground"></div>
+
+    <!-- Floating Sun -->
+    <div class="floating-sun" id="floatingSun">
+        <div class="sun-rays"></div>
+        <div class="sun-core"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="logo">
+                <span class="sun-icon">☀️</span>
+                <span class="logo-text">Sunblock</span>
+            </div>
+            <a href="#download" class="nav-link">Download</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-icon">
+                <div class="pulse-circle"></div>
+                <div class="pulse-circle delay-1"></div>
+                <div class="pulse-circle delay-2"></div>
+                <span class="hero-sun">☀️</span>
+            </div>
+            <h1 class="hero-title">Sunblock</h1>
+            <p class="hero-tagline">Go outside to unlock your apps.</p>
+            <p class="hero-subtitle">Break your screen addiction. Earn your apps by spending time in daylight.</p>
+            <a href="#download" class="cta-button glass-button">
+                Get Started
+            </a>
+            <p class="hero-note">No account needed. Everything stays on your device.</p>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+
+            <div class="steps">
+                <div class="step glass-card" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">📱</div>
+                    <h3 class="step-title">Select apps to restrict</h3>
+                    <p class="step-description">Choose which apps stay locked until your outdoor goal is met.</p>
+                </div>
+
+                <div class="step glass-card" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">⌚</div>
+                    <h3 class="step-title">Set your daily daylight goal</h3>
+                    <p class="step-description">Pick how many minutes of daylight it takes to unlock your apps. Verified by Apple Watch.</p>
+                </div>
+
+                <div class="step glass-card" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">📅</div>
+                    <h3 class="step-title">Set your schedule</h3>
+                    <p class="step-description">Choose the hours and days you want app restrictions to be active.</p>
+                </div>
+            </div>
+
+            <div class="bonus-feature glass-card">
+                <span class="bonus-icon">🔥</span>
+                <p><strong>Build your streak!</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Sunblock?</h2>
+
+            <div class="features-grid">
+                <div class="feature glass-card interactive-card">
+                    <div class="feature-icon">🌞</div>
+                    <h3>Get Outside</h3>
+                    <p>Your apps unlock when you spend real time in daylight, verified by Apple Watch.</p>
+                </div>
+
+                <div class="feature glass-card interactive-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy First</h3>
+                    <p>No account required. All data stays on your device. We don't track you.</p>
+                </div>
+
+                <div class="feature glass-card interactive-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Flexible Schedule</h3>
+                    <p>Set when blocking is active. Weekdays only, weekends too—you choose.</p>
+                </div>
+
+                <div class="feature glass-card interactive-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Build Habits</h3>
+                    <p>Track your streak and build a consistent outdoor routine.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Preview -->
+    <section class="preview">
+        <div class="container">
+            <h2 class="section-title">Beautiful & Simple</h2>
+            <div class="preview-content glass-card">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="app-preview-gradient"></div>
+                        <div class="app-preview-content">
+                            <div class="preview-sun">☀️</div>
+                            <h3>15 minutes</h3>
+                            <p>of daylight unlocks your apps today</p>
+                            <div class="preview-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progressFill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <div class="container">
+            <div class="download-content glass-card">
+                <h2>Ready to go outside?</h2>
+                <p>Download Sunblock for iPhone and Apple Watch</p>
+                <div class="download-buttons">
+                    <a href="#" class="app-store-button glass-button">
+                        <span class="button-icon">📱</span>
+                        Download on the App Store
+                    </a>
+                </div>
+                <p class="requirements">Requires iOS 17+ and Apple Watch for daylight verification</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="sun-icon">☀️</span>
+                    <span>Sunblock</span>
+                </div>
+                <nav class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="mailto:support@sunblock.app">Support</a>
+                </nav>
+            </div>
+            <p class="footer-copy">&copy; 2026 Sunblock. Go outside.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

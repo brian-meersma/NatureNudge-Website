@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Sunblock</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .privacy-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .privacy-content {
+            padding: 3rem;
+        }
+
+        .privacy-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .privacy-content h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .privacy-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="midday">
+    <div class="sky-background"></div>
+
+    <div class="privacy-container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+
+        <div class="privacy-content glass-card">
+            <h1>Privacy Policy</h1>
+            <p><em>Last updated: April 2026</em></p>
+
+            <h2>Your Privacy Matters</h2>
+            <p>At Sunblock, we believe your data is yours. Period.</p>
+
+            <h2>What We Collect</h2>
+            <p>We process all the information needed for the app to function on your device. No information is sent to the Sunblock developer</p>
+
+            <h2>How We Use Your Data</h2>
+            <p>All app blocking, daylight tracking, and streak counting happens locally on your iPhone and Apple Watch.</p>
+
+            <h2>Third-Party Services</h2>
+            <p>Sunblock does not use any third-party analytics, tracking, or advertising services. To use Sunblock you need to grant the app permission to read your Apple Health time in daylight data and grant screen time permission. Apple Health and Screen Time are subject to Apple's privacy policy at <a href="https://www.apple.com/legal/privacy/" style="color: var(--orange);">https://www.apple.com/legal/privacy/</a></p>
+
+            <h2>Apple Watch Integration</h2>
+            <p>Daylight time is verified using your Apple Watch's ambient light sensor. This data never leaves your device and is not shared with Sunblock or anyone else.</p>
+            
+            <h2>Data Deletion</h2>
+            <p>Your data is not sent off of your device or associated with any accounts. If you would like to delete your data from Sunblock, you can uninstall the app at any time</p>
+
+            <h2>Changes to This Policy</h2>
+            <p>If we ever change our privacy policy, we'll update this page.</p>
+
+            <h2>Contact</h2>
+            <p>Questions? Email us at</p>
+
+            <p style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--glass-border);">
+                <strong>☀️ Now go outside! ☀️</strong>
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="sun-icon">☀️</span>
+                    <span>Sunblock</span>
+                </div>
+                <nav class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="mailto:support@sunblock.app">Support</a>
+                </nav>
+            </div>
+            <p class="footer-copy">&copy; 2026 Sunblock. Go outside.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set time-based gradient
+        const hour = new Date().getHours();
+        const body = document.body;
+        body.classList.remove('morning', 'midday', 'evening', 'night');
+
+        if (hour >= 5 && hour < 8) {
+            body.classList.add('morning');
+        } else if (hour >= 8 && hour < 17) {
+            body.classList.add('midday');
+        } else if (hour >= 17 && hour < 20) {
+            body.classList.add('evening');
+        } else {
+            body.classList.add('night');
+        }
+    </script>
+</body>
+</html>
