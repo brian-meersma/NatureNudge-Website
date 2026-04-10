@@ -37,6 +37,13 @@
 
 html {
     height: -webkit-fill-available;
+    background-color: #5AC8FA;
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        background-color: #1a1a3a;
+    }
 }
 
 body {
@@ -45,7 +52,9 @@ body {
     overflow-x: hidden;
     line-height: 1.6;
     min-height: 100vh;
+    min-height: 100dvh;
     min-height: -webkit-fill-available;
+    background-color: transparent;
 }
 
 /* ================================
@@ -56,37 +65,67 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    height: -webkit-fill-available;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
     z-index: -2;
     transition: background 2s ease;
 }
 
 body.morning .sky-background {
     background: linear-gradient(180deg,
-        rgba(255, 149, 0, 0.4) 0%,
-        rgba(90, 200, 250, 0.3) 50%,
-        var(--background) 100%);
+        #FFB347 0%,
+        #FFCCB3 40%,
+        #87CEEB 100%);
 }
 
 body.midday .sky-background {
     background: linear-gradient(180deg,
-        rgba(0, 122, 255, 0.6) 0%,
-        rgba(90, 200, 250, 0.3) 100%);
+        #4A90E2 0%,
+        #87CEEB 60%,
+        #B0E0E6 100%);
 }
 
 body.evening .sky-background {
     background: linear-gradient(180deg,
-        rgba(255, 149, 0, 0.5) 0%,
-        rgba(175, 82, 222, 0.3) 50%,
-        var(--background) 100%);
+        #FF6B35 0%,
+        #C874AF 50%,
+        #5856D6 100%);
 }
 
 body.night .sky-background {
     background: linear-gradient(180deg,
-        rgba(88, 86, 214, 0.8) 0%,
-        var(--background) 100%);
+        #1a1a3a 0%,
+        #2d2d5f 50%,
+        #1a1a3a 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+    body.morning .sky-background {
+        background: linear-gradient(180deg,
+            #2d2d5f 0%,
+            #1a1a3a 100%);
+    }
+
+    body.midday .sky-background {
+        background: linear-gradient(180deg,
+            #1a1a3a 0%,
+            #000033 100%);
+    }
+
+    body.evening .sky-background {
+        background: linear-gradient(180deg,
+            #2d1a3a 0%,
+            #1a1a3a 100%);
+    }
+
+    body.night .sky-background {
+        background: linear-gradient(180deg,
+            #0a0a1a 0%,
+            #000000 100%);
+    }
 }
 
 /* ================================
