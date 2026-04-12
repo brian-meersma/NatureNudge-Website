@@ -230,6 +230,25 @@ function setupSunEasterEgg() {
 }
 
 // ================================
+// Stop Animations After 5 Seconds
+// ================================
+
+function stopInitialAnimations() {
+    // Stop the pulsing sun animation
+    const sunCore = document.querySelector('.sun-core');
+    if (sunCore) {
+        sunCore.style.animation = 'none';
+    }
+
+    // Stop all floating particle animations
+    const particles = document.querySelectorAll('.floating-particle');
+    particles.forEach(particle => {
+        particle.style.animation = 'none';
+        particle.style.opacity = '0';
+    });
+}
+
+// ================================
 // Initialize Everything
 // ================================
 
@@ -245,6 +264,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update sky gradient every minute
     setInterval(updateSkyGradient, 60000);
+
+    // Stop animations after 5 seconds
+    setTimeout(stopInitialAnimations, 5000);
 });
 
 // ================================
