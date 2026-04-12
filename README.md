@@ -1,4 +1,4 @@
-# Sunblock Marketing Website
+# Nature Nudge Marketing Website
 
 A fun, interactive marketing website for the Sunblock iOS app, built with vanilla HTML, CSS, and JavaScript.
 
