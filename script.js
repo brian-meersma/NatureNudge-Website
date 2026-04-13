@@ -265,6 +265,7 @@ function stopInitialAnimations() {
 // ================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Set theme once on page load and keep it consistent for the session
     updateSkyGradient();
     setupScrollAnimations();
     setupInteractiveCards();
@@ -273,9 +274,6 @@ document.addEventListener('DOMContentLoaded', () => {
     animateProgressBar();
     createFloatingParticles();
     setupSunEasterEgg();
-
-    // Update sky gradient every minute
-    setInterval(updateSkyGradient, 60000);
 
     // Stop animations after 5 seconds
     setTimeout(stopInitialAnimations, 5000);
