@@ -1,307 +1,36 @@
-// ================================
-// Dynamic Sky Background Based on Time
-// ================================
+/* Nature Nudge — progressive enhancement only.
+   Everything here is decorative; the page is fully usable without it. */
 
-function updateSkyGradient() {
-    const hour = new Date().getHours();
-    const body = document.body;
+(function () {
+    "use strict";
 
-    // Remove all time classes
-    body.classList.remove('morning', 'midday', 'evening', 'night');
-
-    // Add appropriate class based on time
-    if (hour >= 5 && hour < 8) {
-        body.classList.add('morning');
-    } else if (hour >= 8 && hour < 17) {
-        body.classList.add('midday');
-    } else if (hour >= 17 && hour < 20) {
-        body.classList.add('evening');
-    } else {
-        body.classList.add('night');
-    }
-}
-
-// ================================
-// Intersection Observer for Animations
-// ================================
-
-function setupScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe all cards and features
-    const animatedElements = document.querySelectorAll('.glass-card, .feature, .step');
-    animatedElements.forEach(el => observer.observe(el));
-}
-
-// ================================
-// Interactive Card Effects
-// ================================
-
-function setupInteractiveCards() {
-    const cards = document.querySelectorAll('.interactive-card');
-
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            // Add slight tilt effect based on mouse position
-            card.style.transition = 'transform 0.1s ease';
-        });
-
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const rotateX = (y - centerY) / 20;
-            const rotateY = (centerX - x) / 20;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px) scale(1.02)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transition = 'transform 0.3s ease';
-            card.style.transform = '';
-        });
-    });
-}
-
-// ================================
-// Smooth Scrolling for Navigation
-// ================================
-
-function setupSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-}
-
-// ================================
-// Parallax Effect for Floating Sun
-// ================================
-
-function setupParallax() {
-    const floatingSun = document.getElementById('floatingSun');
-
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * 0.5;
-
-        floatingSun.style.transform = `translateY(${rate}px)`;
-    });
-}
-
-// ================================
-// App Preview Animation
-// ================================
-
-function setupAppPreviewAnimation() {
-    const appGrid = document.getElementById('appGrid');
-    const unlockScreen = document.getElementById('unlockScreen');
-
-    // Trigger animations when preview section comes into view
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Reset and restart animations
-                appGrid.style.animation = 'none';
-                unlockScreen.style.animation = 'none';
-
-                // Force reflow
-                void appGrid.offsetWidth;
-                void unlockScreen.offsetWidth;
-
-                // Restart animations
-                appGrid.style.animation = 'fadeOutGrid 0.5s ease-out 2.5s forwards';
-                unlockScreen.style.animation = 'fadeInUnlock 0.5s ease-in 3s forwards';
-
-                // Unobserve after first trigger
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    if (appGrid) {
-        observer.observe(appGrid);
-    }
-}
-
-// ================================
-// Random Floating Particles
-// ================================
-
-function createFloatingParticles() {
-    const particleCount = 20;
-    const container = document.body;
-
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'floating-particle';
-
-        const size = Math.random() * 4 + 2;
-        const left = Math.random() * 100;
-        const animationDuration = Math.random() * 10 + 10;
-        const delay = Math.random() * 5;
-
-        particle.style.cssText = `
-            position: fixed;
-            width: ${size}px;
-            height: ${size}px;
-            background: radial-gradient(circle, var(--yellow), transparent);
-            border-radius: 50%;
-            left: ${left}%;
-            top: -10px;
-            opacity: 0.3;
-            pointer-events: none;
-            z-index: -1;
-            animation: floatDown ${animationDuration}s linear ${delay}s infinite;
-        `;
-
-        container.appendChild(particle);
+    // Hairline under the sticky header once the page has scrolled.
+    var header = document.getElementById("siteHeader");
+    if (header) {
+        var setStuck = function () {
+            header.classList.toggle("is-stuck", window.scrollY > 8);
+        };
+        setStuck();
+        window.addEventListener("scroll", setStuck, { passive: true });
     }
 
-    // Add floating animation CSS
-    if (!document.getElementById('particle-styles')) {
-        const style = document.createElement('style');
-        style.id = 'particle-styles';
-        style.textContent = `
-            @keyframes floatDown {
-                0% {
-                    transform: translateY(-10px) translateX(0);
-                    opacity: 0;
-                }
-                10% {
-                    opacity: 0.3;
-                }
-                90% {
-                    opacity: 0.3;
-                }
-                100% {
-                    transform: translateY(100vh) translateX(20px);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-}
+    // Reveal-on-scroll. Skipped entirely when the visitor prefers reduced motion
+    // or when IntersectionObserver is unavailable.
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var items = document.querySelectorAll(".reveal");
 
-// ================================
-// Easter Egg: Click the floating sun
-// ================================
-
-function setupSunEasterEgg() {
-    const floatingSun = document.getElementById('floatingSun');
-    let clickCount = 0;
-
-    floatingSun.addEventListener('click', () => {
-        clickCount++;
-
-        // Add bounce animation
-        floatingSun.style.animation = 'none';
-        setTimeout(() => {
-            floatingSun.style.animation = 'float 6s ease-in-out infinite';
-        }, 10);
-
-        // Add temporary scale effect
-        const sunCore = floatingSun.querySelector('.sun-core');
-        sunCore.style.transform = 'translate(-50%, -50%) scale(1.3)';
-        setTimeout(() => {
-            sunCore.style.transform = 'translate(-50%, -50%) scale(1)';
-        }, 300);
-
-        // After 5 clicks, show a message
-        if (clickCount === 5) {
-            alert('☀️ You found the sun! Now go find the real one outside! ☀️');
-            clickCount = 0;
-        }
-    });
-
-    // Make it look clickable on hover
-    floatingSun.style.cursor = 'pointer';
-}
-
-// ================================
-// Stop Animations After 5 Seconds
-// ================================
-
-function stopInitialAnimations() {
-    // Stop the floating sun core pulse animation
-    const sunCore = document.querySelector('.sun-core');
-    if (sunCore) {
-        sunCore.style.setProperty('animation', 'none', 'important');
+    if (reduced || !("IntersectionObserver" in window)) {
+        items.forEach(function (el) { el.classList.add("is-visible"); });
+        return;
     }
 
-    // Stop the sun rays rotation
-    const sunRays = document.querySelector('.sun-rays');
-    if (sunRays) {
-        sunRays.style.setProperty('animation', 'none', 'important');
-    }
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+        });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
 
-    // Stop the hero pulse circles
-    const pulseCircles = document.querySelectorAll('.pulse-circle');
-    pulseCircles.forEach(circle => {
-        circle.style.setProperty('animation', 'none', 'important');
-    });
-
-    // Stop all floating particle animations and fade them out
-    const particles = document.querySelectorAll('.floating-particle');
-    particles.forEach(particle => {
-        particle.style.setProperty('animation', 'none', 'important');
-        particle.style.setProperty('opacity', '0', 'important');
-    });
-}
-
-// ================================
-// Initialize Everything
-// ================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Set theme once on page load and keep it consistent for the session
-    updateSkyGradient();
-    setupScrollAnimations();
-    setupInteractiveCards();
-    setupSmoothScroll();
-    setupParallax();
-    setupAppPreviewAnimation();
-    createFloatingParticles();
-    setupSunEasterEgg();
-
-    // Stop animations after 5 seconds
-    setTimeout(stopInitialAnimations, 5000);
-});
-
-// ================================
-// Handle reduced motion preferences
-// ================================
-
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    // Disable animations for users who prefer reduced motion
-    document.querySelectorAll('*').forEach(el => {
-        el.style.animation = 'none';
-        el.style.transition = 'none';
-    });
-}
+    items.forEach(function (el) { observer.observe(el); });
+}());

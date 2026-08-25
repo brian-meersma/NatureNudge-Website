@@ -1,220 +1,499 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="theme-color" content="#4A90E2" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#1a1a3a" media="(prefers-color-scheme: dark)">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nature Nudge — Go outside to unlock your apps</title>
+<meta name="description" content="Nature Nudge locks your most distracting apps until you meet a daily outdoor goal — daylight, steps, or distance. On the App Store for iPhone and Apple Watch.">
 
-    <!-- Social Media Preview -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Nature Nudge - Go outside to unlock your apps">
-    <meta property="og:description" content="Break your screen addiction. Earn your apps by spending time in daylight. No account needed. Everything stays on your device.">
-    <meta property="og:image" content="https://brian-meersma.github.io/NatureNudge-Website/social-preview.png">
-    <meta property="og:url" content="https://brian-meersma.github.io/NatureNudge-Website/">
-    <meta property="og:image:width" content="1456">
-    <meta property="og:image:height" content="720">
+<meta name="theme-color" content="#FBF9F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B0E24" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://brian-meersma.github.io/NatureNudge-Website/">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Nature Nudge - Go outside to unlock your apps">
-    <meta name="twitter:description" content="Break your screen addiction. Earn your apps by spending time in daylight.">
-    <meta name="twitter:image" content="https://brian-meersma.github.io/NatureNudge-Website/social-preview.png">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-    <meta name="description" content="Break your screen addiction. Earn your apps by spending time in daylight. No account needed. Everything stays on your device.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nature Nudge">
+<meta property="og:title" content="Nature Nudge — Go outside to unlock your apps">
+<meta property="og:description" content="Your distracting apps stay locked until you meet a daily daylight, steps, or distance goal.">
+<meta property="og:url" content="https://brian-meersma.github.io/NatureNudge-Website/">
+<meta property="og:image" content="https://brian-meersma.github.io/NatureNudge-Website/assets/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Two iPhones running Nature Nudge beside the headline Go outside to unlock your apps.">
+<meta property="og:image" content="https://brian-meersma.github.io/NatureNudge-Website/assets/og-image-square.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
 
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" href="favicon.svg">
-    <title>Nature Nudge - Go outside to unlock your apps</title>
-    <link rel="stylesheet" href="style.css">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nature Nudge — Go outside to unlock your apps">
+<meta name="twitter:description" content="Your distracting apps stay locked until you meet a daily daylight, steps, or distance goal.">
+<meta name="twitter:image" content="https://brian-meersma.github.io/NatureNudge-Website/assets/og-image.jpg">
+<meta name="twitter:image:alt" content="Two iPhones running Nature Nudge beside the headline Go outside to unlock your apps.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Nature Nudge",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "iOS 26.0 or later",
+  "url": "https://apps.apple.com/us/app/nature-nudge/id6762029266",
+  "description": "Nature Nudge locks your distracting apps until you meet a daily outdoor goal — daylight, steps, or distance.",
+  "offers": [
+    { "@type": "Offer", "name": "Yearly",  "price": "19.99", "priceCurrency": "USD" },
+    { "@type": "Offer", "name": "Monthly", "price": "2.99",  "priceCurrency": "USD" }
+  ]
+}
+</script>
 </head>
+
 <body>
-    <!-- Dynamic Sky Background -->
-    <div class="sky-background" id="skyBackground"></div>
+<a class="skip-link" href="#main">Skip to main content</a>
 
-    <!-- Floating Sun -->
-    <div class="floating-sun" id="floatingSun">
-        <div class="sun-rays"></div>
-        <div class="sun-core"></div>
+<header class="site-header" id="siteHeader">
+    <div class="wrap">
+        <a class="brand" href="#top">
+            <img src="assets/app-icon.png" alt="" width="30" height="30">
+            <span>Nature Nudge</span>
+        </a>
+        <nav aria-label="Main">
+            <ul class="nav-list">
+                <li><a href="#how">How it works</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+        <a class="badge-link"
+           href="https://apps.apple.com/us/app/nature-nudge/id6762029266">
+            <img src="assets/app-store-badge-white.svg"
+                 alt="Download Nature Nudge on the App Store"
+                 width="124" height="41">
+        </a>
     </div>
+</header>
 
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-content">
-            <div class="logo">
-                <span class="sun-icon">☀️</span>
-                <span class="logo-text">Nature Nudge</span>
-            </div>
-            <a href="#download" class="nav-link">Download</a>
-        </div>
-    </nav>
+<main id="main">
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-icon">
-                <div class="pulse-circle"></div>
-                <div class="pulse-circle delay-1"></div>
-                <div class="pulse-circle delay-2"></div>
-                <span class="hero-sun">☀️</span>
-            </div>
-            <h1 class="hero-title">Nature Nudge</h1>
-            <p class="hero-tagline">Go outside to unlock your apps.</p>
-            <p class="hero-subtitle">More fresh air, less screen glare. Earn your apps by spending time in daylight.</p>
-            <a href="#download" class="cta-button glass-button">
-                Get Started
-            </a>
-            <p class="hero-note">No account needed. Everything stays on your device.</p>
-        </div>
-    </section>
+<!-- ============================================================ Hero -- -->
+<section class="hero" id="top" aria-labelledby="hero-title">
+    <img class="hero__photo" src="assets/hero-photo.jpg" alt="" aria-hidden="true">
+    <span class="hero__veil" aria-hidden="true"></span>
 
-    <!-- How It Works -->
-    <section class="how-it-works">
-        <div class="container">
-            <h2 class="section-title">How It Works</h2>
+    <div class="wrap">
+        <div class="hero__grid">
+            <div>
+                <p class="eyebrow">iPhone · Apple Watch</p>
+                <h1 class="hero__title" id="hero-title">
+                    Go outside
+                    <span class="accent">to unlock your apps.</span>
+                </h1>
+                <p class="hero__sub">
+                    Nature Nudge keeps your most distracting apps locked until you
+                    meet a daily outdoor goal. Daylight, steps, or distance — you set it,
+                    your body clears it.
+                </p>
 
-            <div class="steps">
-                <div class="step glass-card" data-step="1">
-                    <div class="step-number">1</div>
-                    <div class="step-icon">📱</div>
-                    <h3 class="step-title">Select apps to restrict</h3>
-                    <p class="step-description">Choose which apps stay locked until your outdoor goal is met.</p>
-                </div>
-
-                <div class="step glass-card" data-step="2">
-                    <div class="step-number">2</div>
-                    <div class="step-icon">⌚</div>
-                    <h3 class="step-title">Set your daily daylight goal</h3>
-                    <p class="step-description">Pick how many minutes of daylight it takes to unlock your apps. Verified by Apple Watch.</p>
-                </div>
-
-                <div class="step glass-card" data-step="3">
-                    <div class="step-number">3</div>
-                    <div class="step-icon">📅</div>
-                    <h3 class="step-title">Set your schedule</h3>
-                    <p class="step-description">Choose the hours and days you want app restrictions to be active.</p>
-                </div>
-            </div>
-
-            <div class="bonus-feature glass-card">
-                <span class="bonus-icon">🔥</span>
-                <p><strong>Build your streak!</strong></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Grid -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Why Nature Nudge?</h2>
-
-            <div class="features-grid">
-                <div class="feature glass-card interactive-card">
-                    <div class="feature-icon">🌞</div>
-                    <h3>Get Outside</h3>
-                    <p>Your apps unlock when you spend real time in daylight, verified by Apple Watch.</p>
-                </div>
-
-                <div class="feature glass-card interactive-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Privacy First</h3>
-                    <p>No account required. All data stays on your device. We don't track you.</p>
-                </div>
-
-                <div class="feature glass-card interactive-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Flexible Schedule</h3>
-                    <p>Set when blocking is active.</p>
-                </div>
-
-                <div class="feature glass-card interactive-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Build Habits</h3>
-                    <p>Track your streak and build a consistent outdoor routine.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- App Preview -->
-    <section class="preview">
-        <div class="container">
-            <h2 class="section-title">Beautiful & Simple</h2>
-            <div class="preview-content glass-card">
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="app-preview-gradient"></div>
-
-                        <!-- App Grid (shows first) -->
-                        <div class="app-grid" id="appGrid">
-                            <div class="app-icon" style="background: linear-gradient(135deg, #FF3B30, #FF6B6B);"></div>
-                            <div class="app-icon" style="background: linear-gradient(135deg, #007AFF, #4A9EFF);"></div>
-                            <div class="app-icon" style="background: linear-gradient(135deg, #34C759, #5DD57D);"></div>
-                            <div class="app-icon" style="background: linear-gradient(135deg, #FF9500, #FFAB40);"></div>
-                            <div class="app-icon" style="background: linear-gradient(135deg, #5856D6, #7B79EA);"></div>
-                            <div class="app-icon" style="background: linear-gradient(135deg, #FF2D55, #FF5277);"></div>
-                            <div class="app-icon" style="background: linear-gradient(135deg, #5AC8FA, #7DD4FC);"></div>
-                            <div class="app-icon" style="background: linear-gradient(135deg, #FFCC00, #FFD740);"></div>
-                            <div class="app-icon" style="background: linear-gradient(135deg, #AF52DE, #C26FE8);"></div>
-                            <div class="app-icon app-locked" id="lockedApp" style="background: linear-gradient(135deg, #8E8E93, #AEAEB2);"></div>
-                            <div class="app-icon" style="background: linear-gradient(135deg, #FF6B35, #FF8A5B);"></div>
-                            <div class="app-icon" style="background: linear-gradient(135deg, #32ADE6, #5BBFED);"></div>
-                        </div>
-
-                        <!-- Unlock Screen (shows after tap) -->
-                        <div class="app-preview-content" id="unlockScreen">
-                            <div class="preview-sun">☀️</div>
-                            <h3>20 minutes</h3>
-                            <p>of daylight unlocks your apps today</p>
-                            <div class="preview-progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" id="progressFill"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Download Section -->
-    <section class="download" id="download">
-        <div class="container">
-            <div class="download-content glass-card">
-                <h2>Ready to go outside?</h2>
-                <p>Download Nature Nudge for iPhone</p>
-                <div class="download-buttons">
-                    <a href="#" class="app-store-button glass-button">
-                        <span class="button-icon">📱</span>
-                        Download on the App Store
+                <div class="hero__actions">
+                    <a class="badge-link"
+                       href="https://apps.apple.com/us/app/nature-nudge/id6762029266">
+                        <img src="assets/app-store-badge-white.svg"
+                             alt="Download Nature Nudge on the App Store"
+                             width="186" height="62">
                     </a>
+                    <a class="btn btn--ghost-dark" href="#how">See how it works</a>
                 </div>
-                <p class="requirements">Requires iOS 26+ and Apple Watch Series 6, Apple Watch SE 2, or Apple Watch Ultra or later for daylight verification</p>
+
+                <ul class="hero__meta">
+                    <li>
+                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V8H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 7V5.5a3 3 0 1 0-6 0V8h6Z" clip-rule="evenodd"/></svg>
+                        No account. No tracking.
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1Zm0 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1ZM4 10a1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1Zm14 0a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1ZM4.222 4.222a1 1 0 0 1 1.414 0l.707.707A1 1 0 0 1 4.93 6.343l-.707-.707a1 1 0 0 1 0-1.414Zm9.435 9.435a1 1 0 0 1 1.414 0l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 0-1.414Zm2.121-9.435a1 1 0 0 1 0 1.414l-.707.707a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0ZM6.343 13.657a1 1 0 0 1 0 1.414l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0Z"/></svg>
+                        Verified by Apple Watch
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-12a.75.75 0 0 0-1.5 0v4c0 .28.16.54.4.67l2.75 1.5a.75.75 0 1 0 .72-1.32L10.75 9.5V6Z" clip-rule="evenodd"/></svg>
+                        Locks only what you pick
+                    </li>
+                </ul>
+            </div>
+
+            <div class="hero__device">
+                <div class="device device--lg">
+                    <img src="assets/screens/03-unlock.png"
+                         alt="Nature Nudge home screen showing 63 daylight minutes recorded today, a completed progress ring, four unlocked app icons, and an 89 day streak."
+                         width="720" height="1561">
+                </div>
+                <div class="watch">
+                    <img src="assets/screens/watch-face.png"
+                         alt="Apple Watch showing a daylight progress ring with 14 minutes to go and the label Apps locked."
+                         width="500" height="596">
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="sun-icon">☀️</span>
-                    <span>Nature Nudge</span>
-                </div>
-                <nav class="footer-links">
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAO__d2WzkRUQkdaQlNQN0pYU01TVzdLMTNZN1FaNTY4Vy4u">Support & Feedback</a>
-                </nav>
-            </div>
-            <p class="footer-copy">&copy; 2026</p>
-            <p class="footer-legal">Apple Watch, iPhone, iOS, and App Store are trademarks of Apple Inc., registered in the U.S. and other countries.</p>
+<!-- ==================================================== How it works -- -->
+<section class="section section--surface" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+        <div class="section-head section-head--center">
+            <p class="eyebrow">How it works</p>
+            <h2 id="how-title">Three decisions, then it runs itself</h2>
+            <p class="lede">
+                Set it up once in about two minutes. After that, the only thing that
+                changes your day is whether you went outside.
+            </p>
         </div>
-    </footer>
 
-    <script src="script.js"></script>
+        <ol class="steps">
+            <li class="step reveal">
+                <div class="step__shot">
+                    <img style="--shot-y: 45%" src="assets/screens/11-pick-apps.png"
+                         alt="Setup screen asking which apps should you earn, with a Select Apps button."
+                         width="720" height="1566" loading="lazy">
+                </div>
+                <div>
+                    <span class="step__n" aria-hidden="true">1</span>
+                    <h3><span class="visually-hidden">Step 1. </span>Choose what gets locked</h3>
+                    <p>
+                        Pick the apps and websites you want to earn. Everything else stays
+                        open — calls, maps, music, whatever you actually need.
+                    </p>
+                </div>
+            </li>
+
+            <li class="step reveal">
+                <div class="step__shot">
+                    <img style="--shot-y: 37%" src="assets/screens/10-set-goal.png"
+                         alt="Goal screen with Daylight, Steps and Distance tabs, set to 30 minutes per day and measured by Apple Watch."
+                         width="720" height="1566" loading="lazy">
+                </div>
+                <div>
+                    <span class="step__n" aria-hidden="true">2</span>
+                    <h3><span class="visually-hidden">Step 2. </span>Set a daily goal</h3>
+                    <p>
+                        Daylight, steps, or distance. Daylight is verified by Apple Watch;
+                        steps and distance come straight from iPhone Health data.
+                    </p>
+                </div>
+            </li>
+
+            <li class="step reveal">
+                <div class="step__shot">
+                    <img style="--shot-y: 29%" src="assets/screens/12-your-hours.png"
+                         alt="Schedule screen with a six in the morning start time, six in the evening end time, and a Weekends too toggle switched on."
+                         width="720" height="1566" loading="lazy">
+                </div>
+                <div>
+                    <span class="step__n" aria-hidden="true">3</span>
+                    <h3><span class="visually-hidden">Step 3. </span>Pick your hours</h3>
+                    <p>
+                        Decide when locking is active and whether weekends count. Outside
+                        those hours, your phone is your phone.
+                    </p>
+                </div>
+            </li>
+        </ol>
+    </div>
+</section>
+
+<!-- ======================================================= Features -- -->
+<section class="section section--dark" id="features" aria-labelledby="features-title">
+    <div class="wrap">
+        <div class="section-head">
+            <p class="eyebrow">Why it works</p>
+            <h2 id="features-title">A lock you can’t argue with</h2>
+            <p class="lede">
+                Willpower is negotiable. A goal measured by your watch is not.
+            </p>
+        </div>
+
+        <ul class="features">
+            <li class="feature reveal">
+                <span class="feature__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a1 1 0 0 1 1 1v1.5a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm0 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2.5a1 1 0 0 1 1 1V22a1 1 0 1 1-2 0v-1.5a1 1 0 0 1 1-1ZM4.5 12a1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h1.5a1 1 0 0 1 1 1Zm17.5 0a1 1 0 0 1-1 1h-1.5a1 1 0 1 1 0-2H21a1 1 0 0 1 1 1ZM5.28 5.28a1 1 0 0 1 1.42 0l1.06 1.06A1 1 0 0 1 6.34 7.76L5.28 6.7a1 1 0 0 1 0-1.42Zm11.96 11.96a1 1 0 0 1 1.42 0l1.06 1.06a1 1 0 0 1-1.42 1.42l-1.06-1.06a1 1 0 0 1 0-1.42Zm1.48-11.96a1 1 0 0 1 0 1.42L17.66 7.76a1 1 0 1 1-1.42-1.42l1.06-1.06a1 1 0 0 1 1.42 0ZM7.76 17.24a1 1 0 0 1 0 1.42L6.7 19.72a1 1 0 0 1-1.42-1.42l1.06-1.06a1 1 0 0 1 1.42 0Z"/></svg>
+                </span>
+                <h3>Real daylight, verified</h3>
+                <p>
+                    Daylight goals use your Apple Watch’s ambient light sensor. Manually
+                    typed Health entries don’t count.
+                </p>
+            </li>
+
+            <li class="feature reveal">
+                <span class="feature__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 2.5c.3 3-1 4.6-2.3 6C9.7 10 8.3 11.4 8.3 14a3.7 3.7 0 0 0 1.4 2.9c-.1-1.6.6-2.9 1.7-3.9.9 1.9 2.4 2.4 3.6 3.6a3.6 3.6 0 0 1 .9 3.4A5.9 5.9 0 0 0 19 15c0-4.4-2.4-6-3.4-8-.8-1.6-1.4-3.2-2.1-4.5Z"/><path d="M12 22a6 6 0 0 1-6-6c0-1.1.3-2 .8-2.9A8 8 0 0 0 6 16a6 6 0 0 0 6 6Z" opacity=".55"/></svg>
+                </span>
+                <h3>Streaks worth keeping</h3>
+                <p>
+                    One grace day a week keeps a real streak alive. Miss twice and it
+                    resets — which is the whole point.
+                </p>
+            </li>
+
+            <li class="feature reveal">
+                <span class="feature__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 2 4 5.2v6.1c0 4.6 3.2 8.8 8 10.7 4.8-1.9 8-6.1 8-10.7V5.2L12 2Zm3.7 7.7a1 1 0 1 0-1.4-1.4L11 11.6 9.7 10.3a1 1 0 0 0-1.4 1.4l2 2a1 1 0 0 0 1.4 0l4-4Z" clip-rule="evenodd"/></svg>
+                </span>
+                <h3>Private by design</h3>
+                <p>
+                    No account, no sign-up, no analytics. Your goals, schedule, and streak
+                    never leave your device.
+                </p>
+            </li>
+
+            <li class="feature reveal">
+                <span class="feature__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V3a1 1 0 0 1 1-1ZM5 9v10h14V9H5Z" clip-rule="evenodd"/></svg>
+                </span>
+                <h3>Only when you want it</h3>
+                <p>
+                    Locking runs on your schedule — weekday mornings, all weekend, or
+                    whatever hours you set.
+                </p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- ========================================================= Streaks -- -->
+<section class="section section--surface-alt" aria-labelledby="streak-title">
+    <div class="wrap">
+        <div class="split">
+            <div class="split__body">
+                <p class="eyebrow">Momentum</p>
+                <h2 id="streak-title">Watch the habit stack up</h2>
+                <p class="lede">
+                    Trends show your daylight week by week, your best streak, and how many
+                    days you actually hit the goal — so progress is a number, not a feeling.
+                </p>
+                <ul class="checklist">
+                    <li>
+                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.7-9.3a1 1 0 0 0-1.4-1.4L9 10.6 7.7 9.3a1 1 0 0 0-1.4 1.4l2 2a1 1 0 0 0 1.4 0l4-4Z" clip-rule="evenodd"/></svg>
+                        <span><strong>Current and longest streak</strong>, side by side.</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.7-9.3a1 1 0 0 0-1.4-1.4L9 10.6 7.7 9.3a1 1 0 0 0-1.4 1.4l2 2a1 1 0 0 0 1.4 0l4-4Z" clip-rule="evenodd"/></svg>
+                        <span><strong>Week and month views</strong> with your daily average against the goal line.</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.7-9.3a1 1 0 0 0-1.4-1.4L9 10.6 7.7 9.3a1 1 0 0 0-1.4 1.4l2 2a1 1 0 0 0 1.4 0l4-4Z" clip-rule="evenodd"/></svg>
+                        <span><strong>Achievements</strong> for the milestones that take weeks, not minutes.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="split__media reveal">
+                <div class="device">
+                    <img src="assets/screens/04-streak.png"
+                         alt="Trends screen showing an 89 day current streak, 1368 daylight minutes for the week, a bar chart against the goal line, and 7 of 7 goal days met."
+                         width="720" height="1561" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =================================================== Accountability -- -->
+<section class="section section--dark" aria-labelledby="rules-title">
+    <div class="wrap">
+        <div class="split split--flip">
+            <div class="split__body">
+                <p class="eyebrow">Your rules, honestly kept</p>
+                <h2 id="rules-title">Easy to set. Deliberately hard to wriggle out of.</h2>
+                <p class="lede">
+                    Nature Nudge is built so that the version of you making the rule beats
+                    the version of you trying to break it.
+                </p>
+                <ul class="checklist">
+                    <li>
+                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.7-9.3a1 1 0 0 0-1.4-1.4L9 10.6 7.7 9.3a1 1 0 0 0-1.4 1.4l2 2a1 1 0 0 0 1.4 0l4-4Z" clip-rule="evenodd"/></svg>
+                        <span><strong>Raising your goal takes effect now.</strong> Lowering it waits until tomorrow.</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.7-9.3a1 1 0 0 0-1.4-1.4L9 10.6 7.7 9.3a1 1 0 0 0-1.4 1.4l2 2a1 1 0 0 0 1.4 0l4-4Z" clip-rule="evenodd"/></svg>
+                        <span><strong>An emergency unlock is always there</strong> — it just costs you the streak.</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.7-9.3a1 1 0 0 0-1.4-1.4L9 10.6 7.7 9.3a1 1 0 0 0-1.4 1.4l2 2a1 1 0 0 0 1.4 0l4-4Z" clip-rule="evenodd"/></svg>
+                        <span><strong>One grace day a week</strong>, because life happens and a broken streak shouldn’t end the habit.</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.7-9.3a1 1 0 0 0-1.4-1.4L9 10.6 7.7 9.3a1 1 0 0 0-1.4 1.4l2 2a1 1 0 0 0 1.4 0l4-4Z" clip-rule="evenodd"/></svg>
+                        <span><strong>Change anything, anytime</strong> in Settings — apps, websites, hours, goal type.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="split__media reveal">
+                <div class="device">
+                    <img src="assets/screens/07-your-rules.png"
+                         alt="Nature Nudge Settings showing a 30 minutes of daylight goal slider, start and end times, an include weekends toggle, 21 locked apps and 7 locked websites."
+                         width="720" height="1561" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================= Pricing -- -->
+<section class="section section--surface" id="pricing" aria-labelledby="pricing-title">
+    <div class="wrap">
+        <div class="section-head section-head--center">
+            <p class="eyebrow">Pricing</p>
+            <h2 id="pricing-title">One subscription, both apps</h2>
+            <p class="lede">
+                Nature Nudge is a subscription. One plan covers the iPhone app, the
+                Apple Watch app and every feature on this page. Billing is handled by
+                Apple and cancels any time in your App Store settings.
+            </p>
+        </div>
+
+        <ul class="plans plans--two">
+            <li class="plan plan--featured">
+                <span class="plan__tag">Best value</span>
+                <h3>Yearly</h3>
+                <p class="plan__price">$19.99 <span>/ year</span></p>
+                <p>Works out at about $1.67 a month — a saving of roughly 44% against
+                   paying monthly.</p>
+            </li>
+            <li class="plan">
+                <h3>Monthly</h3>
+                <p class="plan__price">$2.99 <span>/ month</span></p>
+                <p>The same access, month to month, with no commitment.</p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- ============================================================= FAQ -- -->
+<section class="section section--surface-alt" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+        <div class="section-head section-head--center">
+            <p class="eyebrow">Questions</p>
+            <h2 id="faq-title">Before you download</h2>
+        </div>
+
+        <div class="faq">
+            <details>
+                <summary>Do I need an Apple Watch?</summary>
+                <p>
+                    Only for daylight goals — the watch’s ambient light sensor is what
+                    verifies real time outdoors. Steps and distance goals work from iPhone
+                    Health data alone.
+                </p>
+            </details>
+            <details>
+                <summary>What happens if I genuinely need a locked app?</summary>
+                <p>
+                    There’s an emergency unlock you can use at any time. It opens everything
+                    immediately and resets your streak, so it stays available without becoming
+                    a habit.
+                </p>
+            </details>
+            <details>
+                <summary>Can I still use my phone normally?</summary>
+                <p>
+                    Yes. Only the apps and websites you choose are locked, only during the
+                    hours you set. Calls, messages, maps and everything you didn’t pick stay
+                    open the whole time.
+                </p>
+            </details>
+            <details>
+                <summary>Does Nature Nudge collect my data?</summary>
+                <p>
+                    No. There is no account, no analytics and no advertising. Your goal,
+                    schedule, app selections and streak are stored on your device. Read the
+                    full <a href="privacy.html">privacy policy</a>.
+                </p>
+            </details>
+            <details>
+                <summary>Do I need a subscription?</summary>
+                <p>
+                    Yes. Nature Nudge needs an active subscription to lock apps — $2.99
+                    a month or $19.99 a year, billed by Apple and cancellable any time
+                    in your App Store settings.
+                </p>
+            </details>
+            <details>
+                <summary>What do I need to run it?</summary>
+                <p>
+                    iOS 26 or later on iPhone, iPadOS 26 on iPad, and watchOS 26 for the
+                    Apple Watch app. Nature Nudge needs Screen Time permission to lock apps
+                    and Health read access for the goal type you choose.
+                </p>
+            </details>
+            <details>
+                <summary>Can I miss a day?</summary>
+                <p>
+                    You get one grace day a week. Use it and the streak survives; miss a
+                    second day in the same week and it starts over.
+                </p>
+            </details>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================= CTA -- -->
+<section class="section cta" aria-labelledby="cta-title">
+    <div class="wrap">
+        <h2 id="cta-title">Your apps are waiting outside.</h2>
+        <p class="lede">
+            Set it up tonight. Tomorrow morning, the only way back in is through
+            the front door.
+        </p>
+        <div class="cta__actions">
+            <a class="badge-link"
+               href="https://apps.apple.com/us/app/nature-nudge/id6762029266">
+                <img src="assets/app-store-badge-white.svg"
+                     alt="Download Nature Nudge on the App Store"
+                     width="200" height="67">
+            </a>
+        </div>
+        <p class="cta__fine">
+            Subscription required. iOS 26 or later. Apple Watch required for daylight goals.
+        </p>
+    </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="wrap">
+        <div class="site-footer__top">
+            <a class="brand" href="#top">
+                <img src="assets/app-icon.png" alt="" width="30" height="30">
+                <span>Nature Nudge</span>
+            </a>
+            <nav aria-label="Footer">
+                <ul>
+                    <li><a href="#how">How it works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="privacy.html">Privacy policy</a></li>
+                    <li><a href="https://apps.apple.com/us/app/nature-nudge/id6762029266">App Store</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="site-footer__base">
+            <p>&copy; 2026 Brian Meersma. Now go outside.</p>
+            <p>Apple, the Apple logo, Apple Watch and App Store are trademarks of Apple Inc.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js" defer></script>
 </body>
 </html>

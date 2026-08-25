@@ -1,2 +1,4 @@
 User-agent: *
-Disallow: /
+Allow: /
+
+Sitemap: https://brian-meersma.github.io/NatureNudge-Website/sitemap.xml

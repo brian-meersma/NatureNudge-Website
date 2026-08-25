@@ -1,98 +1,115 @@
-# Nature Nudge Marketing Website
+# Nature Nudge — marketing website
 
-A fun, interactive marketing website for the Sunblock iOS app, built with vanilla HTML, CSS, and JavaScript.
+Static marketing site for the [Nature Nudge](https://apps.apple.com/us/app/nature-nudge/id6762029266)
+iOS app. Plain HTML, CSS and a little progressive-enhancement JavaScript — no build step.
 
-## Features
+Published at <https://brian-meersma.github.io/NatureNudge-Website/>.
 
-### Visual Design
-- **Dynamic Sky Gradient**: Changes based on time of day (dawn, midday, dusk, night)
-- **Glassmorphism Effects**: Modern glass card design matching the iOS app
-- **Floating Sun Animation**: Interactive sun with pulsing and floating effects
-- **Smooth Animations**: Fade-ins, parallax scrolling, and hover effects
-- **Dark Mode Support**: Automatically adapts to system color scheme preferences
-- **Responsive Design**: Looks great on all devices
-
-### Interactive Elements
-- **3D Card Hover Effects**: Cards tilt based on mouse position
-- **Floating Particles**: Ambient light particles float across the screen
-- **Animated Progress Bar**: Demonstrates the app's progress tracking
-- **Smooth Scrolling**: Navigation links smoothly scroll to sections
-- **Easter Egg**: Click the floating sun 5 times for a surprise!
-- **Accessibility**: Respects reduced motion preferences
-
-### Content Sections
-1. **Hero**: Eye-catching intro with app tagline
-2. **How It Works**: 3-step guide with numbered cards
-3. **Features**: 4-column grid highlighting key benefits
-4. **App Preview**: Phone mockup with animated preview
-5. **Download**: Call-to-action for App Store
-6. **Privacy Policy**: Placeholder page (customize as needed)
-
-## File Structure
+## Structure
 
 ```
-website/
-├── index.html          # Main landing page
-├── privacy.html        # Privacy policy page (placeholder)
-├── style.css          # All styles and animations
-├── script.js          # Interactive features and animations
-└── README.md          # This file
+index.html        Landing page
+privacy.html      Privacy policy
+style.css         All styles
+script.js         Sticky-header hairline + scroll reveal (decorative only)
+favicon.ico       The app icon, multi-resolution
+robots.txt        Allows indexing, points at the sitemap
+sitemap.xml       Two URLs
+tools/
+  make-og-image.py          Regenerates the link-preview images
+assets/
+  app-icon.png              512px app icon (light appearance)
+  favicon-*.png             16/32/48/192/512 app icon, for browser tabs
+  apple-touch-icon.png      180px home-screen icon, opaque as iOS requires
+  og-image.jpg              1200x630 link preview
+  og-image-square.jpg       1200x1200 link preview
+  hero-photo.jpg            The app's own onboarding welcome photo
+  app-store-badge-*.svg     Apple's official US badges (white + black lockups)
+  screens/                  Device screenshots, 720px wide
 ```
 
-## Customization
+## Link previews
 
-### Update App Store Link
-In `index.html`, find the download button and replace `#` with your actual App Store URL:
+`assets/og-image.jpg` (1200x630) is what iMessage, Twitter/X, Slack, Discord,
+Facebook and LinkedIn render. `og-image-square.jpg` (1200x1200) is listed second
+for the handful of clients that prefer a square. Both are built from the
+`05-pair-tight` hero in `~/Downloads/Nature Nudge Hero 2` by:
 
-```html
-<a href="YOUR_APP_STORE_URL_HERE" class="app-store-button glass-button">
+```bash
+python3 tools/make-og-image.py
 ```
 
-### Update Contact Email
-Replace `support@sunblock.app` and `privacy@sunblock.app` with your actual support email.
+Edit the script, not the JPEGs. It needs Pillow and the source art on disk.
 
-### Modify Privacy Policy
-Edit `privacy.html` to add your complete privacy policy.
+## Design
 
-### Change Colors
-Edit CSS variables in `style.css`:
+The palette mirrors the app: deep indigo night (`--ink: #0B0E24`) and sunrise
+amber (`--amber: #F59A2E`).
 
-```css
-:root {
-    --orange: #FF9500;    /* Primary accent */
-    --yellow: #FFCC00;    /* Sun color */
-    --blue: #007AFF;      /* Sky blue */
-    /* ... etc */
-}
+Sections alternate between two token families:
+
+- **The dark canvas** (`--ink`, `--on-dark`, `--line-dark`) drives the hero,
+  feature band, CTA and footer. It is *identical in both colour schemes* — those
+  bands are always dark, because that is the brand.
+- **The surface canvas** (`--surface`, `--surface-alt`, `--on-surface`,
+  `--accent-ink`, `--line`, `--card-surface`, `--on-accent`) drives everything
+  else, and every one of those tokens flips inside the single
+  `@media (prefers-color-scheme: dark)` block at the top of `style.css`.
+
+That is the whole of dark mode — no component rule mentions a scheme. To add a
+colour, add a token to both blocks rather than hardcoding a hex in a rule.
+
+`--accent-ink` is the amber that is legible against the surface: `#8A4A05` in
+light mode, `#FFB65A` in dark. `--on-accent` is its counterpart for text sitting
+*on* an amber chip, and flips the opposite way.
+
+## Accessibility
+
+Targets WCAG 2.1 Level A and AA. Verified with axe-core 4.13 (`wcag2a`, `wcag2aa`,
+`wcag21a`, `wcag21aa`, `wcag22aa`, `best-practice`): **zero violations** on both
+pages, in both light and dark mode.
+
+- Every text/background pair is checked; the lowest ratio anywhere on the site is
+  5.93:1 against a 4.5:1 requirement.
+- Hero and CTA text sits over a photo and gradient overlays, which axe cannot
+  evaluate. Those were verified by compositing the layers and sampling the
+  worst-case pixel under each text box — the lowest was 6.27:1.
+- Skip link, visible `:focus-visible` rings, landmark regions, one `h1` per page,
+  labelled sections, descriptive `alt` text on every screenshot, decorative art
+  hidden from assistive tech.
+- No horizontal scrolling down to a 320px viewport; checked at 320, 375, 393 and
+  430 (iPhone SE through Pro Max).
+- Tap targets are 44px or larger, except inline links inside sentences, which
+  WCAG 2.2 exempts.
+- `prefers-reduced-motion: reduce` disables all animation, transitions and smooth
+  scrolling. `forced-colors: active` restores borders on flat surfaces.
+
+When changing colours, re-check contrast in **both** schemes before shipping. When
+adding a screenshot, give it an `alt` that describes the numbers and labels on
+screen, not "app screenshot".
+
+## Copy
+
+Nature Nudge is behind a hard paywall. Nothing on this site may describe the app
+as free, or imply the download does anything useful without a subscription.
+Prices ($2.99/month, $19.99/year) are mirrored in the `SoftwareApplication`
+structured data in `index.html` — update both together.
+
+## Assets
+
+Screenshots come from `~/Downloads/Nature Nudge App Store Screenshots/Raw device
+screenshots`, downscaled to 720px wide. The App Store badges are Apple's official
+US artwork — do not redraw, recolour or crop them. The white lockup is used on the
+dark sections; the black lockup is included for any future light-background use.
+
+## Local preview
+
+```bash
+python3 -m http.server 4173 --directory website
 ```
 
-## Browser Support
-- Modern browsers (Chrome, Firefox, Safari, Edge)
-- iOS Safari 12+
-- Graceful degradation for older browsers
-- Respects system preferences (dark mode, reduced motion)
+Then open <http://localhost:4173>.
 
-## Performance
-- No external dependencies
-- Optimized animations using CSS transforms
-- Lazy-loaded animations (only when in viewport)
-- Minimal JavaScript (~200 lines)
+## Deploying
 
-## Deployment
-Simply upload all files to any web hosting service:
-- Netlify
-- Vercel
-- GitHub Pages
-- Traditional web hosting
-
-No build process required - it's plain HTML, CSS, and JS!
-
-## Notes
-- The website matches the iOS app's design language (sky gradients, glass effects, orange/yellow sun theme)
-- All animations respect accessibility preferences
-- The privacy policy is currently a placeholder - update it with your actual policy
-- The App Store button link needs to be updated with your actual app URL
-
----
-
-**Go outside!** ☀️
+GitHub Pages serves `main` directly. Push to `main` and the site updates.
