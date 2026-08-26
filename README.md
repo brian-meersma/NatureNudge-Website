@@ -28,30 +28,36 @@ assets/
 
 ## Link previews
 
-`assets/og-image.jpg` (1200x630) is the single link preview, built from the
-`05-pair-tight` hero in `~/Downloads/Nature Nudge Hero 2` by:
+`assets/og-image.jpg` (1200x630) is the single link preview. Rebuild it with:
 
 ```bash
 python3 tools/make-og-image.py
 ```
 
-Edit the script, not the JPEG. It needs Pillow and the source art on disk.
+Edit the script, not the JPEG. It needs Pillow and the app's own screenshots in
+`assets/screens`.
 
-**One image, centre-composed, and it must stay that way.** An earlier version
-also offered a 1200x1200 `og:image` as a second tag. iMessage chose the square,
-cropped its left edge off, and rendered a card reading "e Nudge" over a sliced
-headline. Two lessons, both baked into the script now:
+The card is drawn from the same parts as the page it links to: the site's
+night-to-dawn gradient, and the real screenshots in device frames the script
+builds itself. Three things it is deliberately not doing, each learned the hard
+way:
 
-- Advertise exactly one `og:image`. A second tag is an invitation for a client
-  to pick the one you did not design for.
-- Clients crop the preview to whatever their card wants, so keep everything that
-  matters inside the centre square (x 285-915). The wordmark, headline and
-  phones are all centred; only gradient reaches the edges. `tools/` has no test
-  for this, so eyeball a centre-square crop after any change.
+- **It does not crop a finished poster.** The first version lifted the phone pair
+  out of `05-pair-tight`, which carries its own painted sunrise. That put a
+  rectangle of warm sky on an ink card; feathering the seam only turned it into a
+  murky halo. Art cropped from one background will not sit on another. Draw the
+  devices on transparency instead, which is what `device()` does.
+- **It advertises exactly one og:image.** A second, square one was offered
+  alongside. iMessage chose the square, cropped it to its own card shape, and
+  rendered a preview reading "e Nudge" over a sliced headline. A second tag is
+  an invitation for a client to pick the one you did not design for.
+- **Its grain is generated at full resolution.** Scaling a small noise tile up
+  leaves visible blocks that read as dirt rather than as grain.
 
-The phone art is a rectangular crop of painted sunrise, much lighter than the
-ink ground, so `sink()` pulls its edges toward ink and `feather()` ramps all four
-sides. Without both it reads as a photo pasted onto the card.
+The layout is left-right rather than centred because iMessage, Twitter/X, Slack,
+Discord, Facebook and LinkedIn all render a 1.91:1 image whole. Check any change
+at thumbnail size, around 380px wide, since that is roughly how it lands in a
+message thread.
 
 ## Design
 
