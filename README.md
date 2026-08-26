@@ -100,6 +100,17 @@ CTA; "See how it works" is a text link rather than a second pill, and the trust
 line is three plain phrases rather than three icon rows, which on an iPhone
 stacked into a wall of text before the product was ever visible.
 
+The step screenshots are cropped by CSS, not by hand: `.step__shot img` uses a
+4:5 box with `object-fit: cover` and `object-position: 50% var(--shot-y)`. The
+default 40% is the measured vertical centre of the content in both `11-pick-apps`
+and `10-set-goal`; `12-your-hours` carries an inline override because its content
+sits higher. Those numbers came from measuring each screenshot's content band
+rather than eyeballing, which is worth repeating if a screenshot is replaced.
+
+Screenshots are exported with `sips --resampleWidth 720`, **not** `sips -Z 720`.
+`-Z` fits the *longest* side, so a portrait screenshot came out 331px wide and
+rendered at roughly half resolution on a retina display.
+
 ## Accessibility
 
 Targets WCAG 2.1 Level A and AA. Verified with axe-core 4.13 (`wcag2a`, `wcag2aa`,

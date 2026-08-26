@@ -94,7 +94,7 @@ h1, h2, h3, h4 {
 
 p { margin: 0; text-wrap: pretty; }
 
-ul { margin: 0; padding: 0; list-style: none; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
 
 a { color: inherit; }
 
@@ -488,7 +488,7 @@ h3 { font-size: 1.25rem; letter-spacing: -0.014em; }
     width: 100%;
     aspect-ratio: 4 / 5;
     object-fit: cover;
-    object-position: 50% var(--shot-y, 40%);
+    object-position: 50% var(--shot-y, 40%);   /* measured content centre */
 }
 
 .step__n {
