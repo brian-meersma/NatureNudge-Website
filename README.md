@@ -22,23 +22,36 @@ assets/
   favicon-*.png             16/32/48/192/512 app icon, for browser tabs
   apple-touch-icon.png      180px home-screen icon, opaque as iOS requires
   og-image.jpg              1200x630 link preview
-  og-image-square.jpg       1200x1200 link preview
   app-store-badge-*.svg     Apple's official US badges (black is the one in use)
   screens/                  Device screenshots, 720px wide
 ```
 
 ## Link previews
 
-`assets/og-image.jpg` (1200x630) is what iMessage, Twitter/X, Slack, Discord,
-Facebook and LinkedIn render. `og-image-square.jpg` (1200x1200) is listed second
-for the handful of clients that prefer a square. Both are built from the
+`assets/og-image.jpg` (1200x630) is the single link preview, built from the
 `05-pair-tight` hero in `~/Downloads/Nature Nudge Hero 2` by:
 
 ```bash
 python3 tools/make-og-image.py
 ```
 
-Edit the script, not the JPEGs. It needs Pillow and the source art on disk.
+Edit the script, not the JPEG. It needs Pillow and the source art on disk.
+
+**One image, centre-composed, and it must stay that way.** An earlier version
+also offered a 1200x1200 `og:image` as a second tag. iMessage chose the square,
+cropped its left edge off, and rendered a card reading "e Nudge" over a sliced
+headline. Two lessons, both baked into the script now:
+
+- Advertise exactly one `og:image`. A second tag is an invitation for a client
+  to pick the one you did not design for.
+- Clients crop the preview to whatever their card wants, so keep everything that
+  matters inside the centre square (x 285-915). The wordmark, headline and
+  phones are all centred; only gradient reaches the edges. `tools/` has no test
+  for this, so eyeball a centre-square crop after any change.
+
+The phone art is a rectangular crop of painted sunrise, much lighter than the
+ink ground, so `sink()` pulls its edges toward ink and `feather()` ramps all four
+sides. Without both it reads as a photo pasted onto the card.
 
 ## Design
 

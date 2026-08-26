@@ -8,8 +8,14 @@ at thumbnail size.
 
     python3 tools/make-og-image.py
 
-Writes assets/og-image.jpg (1200x630, the one nearly every platform uses) and
-assets/og-image-square.jpg (1200x1200, for the few that prefer a square).
+Writes assets/og-image.jpg (1200x630).
+
+One image, and a centred composition. An earlier version offered a second square
+og:image as well; iMessage picked the square, cropped its left edge off, and
+rendered a card reading "e Nudge" over a sliced headline. Clients crop the
+preview to whatever their card wants, so everything that matters lives inside the
+centre square: the wordmark, the headline and the phones are all centred, and the
+gradient is the only thing at the edges.
 """
 
 import os
@@ -62,24 +68,60 @@ def art(scale_px):
     return src.resize((scale_px, h), Image.LANCZOS)
 
 
-def feather(img, left=0, top=0, bottom=0):
-    """Alpha ramps on the given edges so the art melts into the background."""
+def feather(img, left=0, right=0, top=0, bottom=0):
+    """Alpha ramps on the given edges so the art melts into the background.
+
+    The source crop is a rectangle of painted sunrise, much lighter than the ink
+    ground. Without ramps on every side that rectangle reads as a pasted box.
+    """
     img = img.convert("RGBA")
+    w, h = img.size
     mask = Image.new("L", img.size, 255)
-    d = ImageDraw.Draw(mask)
+    px = mask.load()
+
+    def ramp(n, i):
+        return int(255 * (i / n) ** 1.4)
+
     for x in range(left):
-        d.line([(x, 0), (x, img.height)], fill=int(255 * (x / left) ** 1.5))
+        v = ramp(left, x)
+        for y in range(h):
+            px[x, y] = min(px[x, y], v)
+    for x in range(right):
+        v = ramp(right, x)
+        for y in range(h):
+            px[w - 1 - x, y] = min(px[w - 1 - x, y], v)
     for y in range(top):
-        v = int(255 * (y / top) ** 1.5)
-        for x in range(img.width):
-            mask.putpixel((x, y), min(mask.getpixel((x, y)), v))
+        v = ramp(top, y)
+        for x in range(w):
+            px[x, y] = min(px[x, y], v)
     for y in range(bottom):
-        v = int(255 * (y / bottom) ** 1.5)
-        yy = img.height - 1 - y
-        for x in range(img.width):
-            mask.putpixel((x, yy), min(mask.getpixel((x, yy)), v))
+        v = ramp(bottom, y)
+        for x in range(w):
+            px[x, h - 1 - y] = min(px[x, h - 1 - y], v)
+
     img.putalpha(mask)
     return img
+
+
+def sink(img, strength=0.55):
+    """Pull the art's own background down toward ink at its edges, so the warm
+    painted sky inside the crop does not sit brighter than the card around it."""
+    img = img.convert("RGBA")
+    w, h = img.size
+    ink = Image.new("RGB", (w, h), INK)
+    fade = Image.new("L", (w, h), 0)
+    px = fade.load()
+    for x in range(w):
+        # 1 at the outer edge, 0 across the middle 56%
+        t = abs(x - w / 2) / (w / 2)
+        v = 0.0 if t < 0.56 else ((t - 0.56) / 0.44) ** 1.6
+        col = int(255 * v * strength)
+        for y in range(h):
+            px[x, y] = col
+    blended = Image.composite(ink, img.convert("RGB"), fade)
+    out = blended.convert("RGBA")
+    out.putalpha(img.getchannel("A"))
+    return out
 
 
 def wordmark(canvas, d, x, y, icon_px):
@@ -102,44 +144,45 @@ def headline(d, x, y, size):
 
 
 def wide():
-    """1200x630 — text column left, phone pair bleeding off the right."""
-    w, h, pad = 1200, 630, 64
-    canvas = background(w, h, glow_at=(0.74, 0.62))
-
-    a = art(round(w * 0.60))
-    a = feather(a, left=round(a.width * 0.38), bottom=round(a.height * 0.10))
-    canvas.paste(a, (w - a.width + round(a.width * 0.06), -round(a.height * 0.05)), a)
-
+    """1200x630, centre-composed so a square crop still reads."""
+    w, h, pad = 1200, 630, 44
+    canvas = background(w, h, glow_at=(0.5, 1.02))
     d = ImageDraw.Draw(canvas)
-    wordmark(canvas, d, pad, pad - 4, 64)
-    headline(d, pad, 218, 68)
-    d.text((pad, h - pad - 20), "On the App Store  ·  iPhone & Apple Watch",
-           font=font(20, "Semibold"), fill=MUTED)
-    return canvas
 
+    # Phones rise from the bottom edge, centred.
+    a = art(640)
+    a = sink(a)
+    a = feather(a, left=70, right=70, top=round(a.height * 0.10))
+    canvas.paste(a, ((w - a.width) // 2, 262), a)
 
-def square():
-    """1200x1200 — text block on top, phone pair filling the lower half."""
-    w, h, pad = 1200, 1200, 84
-    canvas = background(w, h, glow_at=(0.5, 0.86))
+    # Wordmark, centred as a unit.
+    icon_px, gap = 52, 16
+    label_font = font(30)
+    label_w = d.textlength("Nature Nudge", font=label_font)
+    x = (w - (icon_px + gap + label_w)) / 2
+    icon = Image.open(ICON).convert("RGBA").resize((icon_px, icon_px), Image.LANCZOS)
+    rounded = Image.new("L", (icon_px, icon_px), 0)
+    ImageDraw.Draw(rounded).rounded_rectangle(
+        (0, 0, icon_px - 1, icon_px - 1), radius=int(icon_px * 0.225), fill=255)
+    icon.putalpha(rounded)
+    canvas.paste(icon, (round(x), pad), icon)
+    d.text((x + icon_px + gap, pad + icon_px / 2), "Nature Nudge",
+           font=label_font, fill=WHITE, anchor="lm")
 
-    a = art(round(w * 0.92))
-    a = feather(a, top=round(a.height * 0.06))
-    canvas.paste(a, ((w - a.width) // 2, 470), a)
-
-    d = ImageDraw.Draw(canvas)
-    wordmark(canvas, d, pad, pad, 76)
-    headline(d, pad, 236, 78)
+    # Headline, centred, two lines so it stays inside the centre square.
+    for i, (text, colour) in enumerate([("Go outside", WHITE),
+                                        ("to unlock your apps.", AMBER)]):
+        d.text((w / 2, 126 + i * 66), text, font=font(58, "Heavy"),
+               fill=colour, anchor="ma")
     return canvas
 
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    for name, image in (("og-image.jpg", wide()),
-                        ("og-image-square.jpg", square())):
-        path = os.path.join(OUT, name)
-        image.save(path, quality=88, optimize=True, progressive=True)
-        print(f"{name}: {image.size}  {os.path.getsize(path) // 1024} KB")
+    path = os.path.join(OUT, "og-image.jpg")
+    image = wide()
+    image.save(path, quality=88, optimize=True, progressive=True)
+    print(f"og-image.jpg: {image.size}  {os.path.getsize(path) // 1024} KB")
 
 
 if __name__ == "__main__":
